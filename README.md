@@ -1,2 +1,2 @@
 # AutoSizeBug
-debug
+demo project for https://github.com/JessYanCoding/AndroidAutoSize/issues/127
