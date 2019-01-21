@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
+import me.jessyan.autosize.AutoSizeCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +27,9 @@ class MainActivity : AppCompatActivity() {
 
 class MyAdapter : RecyclerView.Adapter<MyHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        MyHolder(LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)).apply {
+        MyHolder(LayoutInflater.from(parent.context.apply {
+//            AutoSizeCompat.autoConvertDensityOfGlobal(resources)
+        }).inflate(R.layout.item, parent, false)).apply {
             itemView.setOnClickListener { v ->
                 v.context.let { c ->
                     c.startActivity(Intent(c, WebViewActivity::class.java))
