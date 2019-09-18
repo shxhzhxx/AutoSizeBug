@@ -23,13 +23,20 @@ class MainActivity : AppCompatActivity() {
 
         refresh.setOnClickListener { adapter.notifyDataSetChanged() }
     }
+
+    /**
+     * work around
+     *
+    override fun onResume() {
+        super.onResume()
+        AutoSizeCompat.autoConvertDensityOfGlobal(resources)
+    }
+     */
 }
 
 class MyAdapter : RecyclerView.Adapter<MyHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        MyHolder(LayoutInflater.from(parent.context.apply {
-//            AutoSizeCompat.autoConvertDensityOfGlobal(resources)
-        }).inflate(R.layout.item, parent, false)).apply {
+        MyHolder(LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)).apply {
             itemView.setOnClickListener { v ->
                 v.context.let { c ->
                     c.startActivity(Intent(c, WebViewActivity::class.java))
